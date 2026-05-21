@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.inmosmart.controller.RecomendacionController"
+      spacing="20" styleClass="content-area">
+
+    <padding><Insets top="28" right="28" bottom="28" left="28"/></padding>
+
+    <Label text="Recomendaciones para ti" styleClass="section-title"/>
+
+    <!-- ═══════════════════════════════════════
+         RESUMEN SUPERIOR
+    ═══════════════════════════════════════ -->
+    <HBox spacing="16">
+
+        <VBox styleClass="card" HBox.hgrow="ALWAYS"
+              alignment="CENTER" spacing="4">
+            <Label text="Recomendaciones"  styleClass="card-title"/>
+            <Label fx:id="lblTotalRecomendaciones"
+                   styleClass="stat-number"
+                   style="-fx-text-fill: #2563EB;"/>
+            <Label text="encontradas" styleClass="stat-label"/>
+        </VBox>
+
+        <VBox styleClass="card" HBox.hgrow="ALWAYS"
+              alignment="CENTER" spacing="4">
+            <Label text="Historial"        styleClass="card-title"/>
+            <Label fx:id="lblBusquedasAnalizadas"
+                   styleClass="stat-label"
+                   style="-fx-font-size: 15px;"/>
+        </VBox>
+
+        <VBox styleClass="card" HBox.hgrow="ALWAYS"
+              alignment="CENTER_LEFT" spacing="4">
+            <Label fx:id="lblMensajeContexto"
+                   styleClass="stat-label"
+                   wrapText="true"/>
+        </VBox>
+
+    </HBox>
+
+    <!-- ═══════════════════════════════════════
+         TABLA DE RECOMENDACIONES
+    ═══════════════════════════════════════ -->
+    <VBox styleClass="card" VBox.vgrow="ALWAYS" spacing="12">
+        <Label text="Inmuebles sugeridos" styleClass="card-title"/>
+
+        <TableView fx:id="tablaRecomendaciones"
+                   styleClass="table-view"
+                   VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colCodigo"   text="Código"   prefWidth="120"/>
+                <TableColumn fx:id="colTipo"     text="Tipo"     prefWidth="120"/>
+                <TableColumn fx:id="colCiudad"   text="Ciudad"   prefWidth="140"/>
+                <TableColumn fx:id="colPrecio"   text="Precio"   prefWidth="150"/>
+                <TableColumn fx:id="colArea"     text="Área"     prefWidth="100"/>
+                <TableColumn fx:id="colVendedor" text="Vendedor" prefWidth="160"/>
+            </columns>
+            <placeholder>
+                <Label text="Realiza búsquedas para recibir recomendaciones."
+                       style="-fx-text-fill: #94A3B8;"/>
+            </placeholder>
+        </TableView>
+    </VBox>
+
+</VBox>

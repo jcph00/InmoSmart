@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.inmosmart.controller.HomeContentController"
+      spacing="24" styleClass="content-area">
+
+    <padding><Insets top="32" right="32" bottom="32" left="32"/></padding>
+
+    <!-- Encabezado -->
+    <VBox spacing="4">
+        <Label fx:id="lblBienvenida" styleClass="section-title"/>
+        <Label fx:id="lblFecha"      styleClass="stat-label"/>
+    </VBox>
+
+    <!-- Tarjetas de estadísticas -->
+    <HBox spacing="16">
+
+        <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="6"
+              alignment="CENTER" prefWidth="1">
+            <Label text="Inmuebles" styleClass="card-title"/>
+            <Label fx:id="lblTotalInmuebles" styleClass="stat-number"/>
+            <Label text="registrados"        styleClass="stat-label"/>
+        </VBox>
+
+        <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="6"
+              alignment="CENTER" prefWidth="1">
+            <Label text="Usuarios" styleClass="card-title"/>
+            <Label fx:id="lblTotalUsuarios" styleClass="stat-number"/>
+            <Label text="registrados"       styleClass="stat-label"/>
+        </VBox>
+
+        <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="6"
+              alignment="CENTER" prefWidth="1">
+            <Label text="Transacciones" styleClass="card-title"/>
+            <Label fx:id="lblTotalTransacciones" styleClass="stat-number"/>
+            <Label text="completadas"             styleClass="stat-label"/>
+        </VBox>
+
+        <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="6"
+              alignment="CENTER" prefWidth="1">
+            <Label text="Mi reputación" styleClass="card-title"/>
+            <Label fx:id="lblReputacion" styleClass="stat-number"/>
+            <Label fx:id="lblRango"      styleClass="stat-label"/>
+        </VBox>
+
+    </HBox>
+
+    <!-- Historial de reputación -->
+    <VBox styleClass="card" spacing="12" VBox.vgrow="ALWAYS">
+        <Label text="Historial de reputación" styleClass="card-title"/>
+        <ListView fx:id="lstHistorialReputacion"
+                  VBox.vgrow="ALWAYS"
+                  style="-fx-background-color: transparent; -fx-border-color: transparent;"/>
+    </VBox>
+
+</VBox>

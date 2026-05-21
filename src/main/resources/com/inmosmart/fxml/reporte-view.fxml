@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.inmosmart.controller.ReporteController"
+      spacing="20" styleClass="content-area">
+
+    <padding><Insets top="28" right="28" bottom="28" left="28"/></padding>
+
+    <Label text="Reportes del sistema" styleClass="section-title"/>
+
+    <!-- ═══════════════════════════════════════
+         RESUMEN SUPERIOR
+    ═══════════════════════════════════════ -->
+    <HBox spacing="16">
+
+        <VBox styleClass="card" HBox.hgrow="ALWAYS"
+              alignment="CENTER" spacing="4">
+            <Label text="Inmuebles"    styleClass="card-title"/>
+            <Label fx:id="lblTotalInmuebles" styleClass="stat-number"/>
+            <Label text="registrados"  styleClass="stat-label"/>
+        </VBox>
+
+        <VBox styleClass="card" HBox.hgrow="ALWAYS"
+              alignment="CENTER" spacing="4">
+            <Label text="Disponibles"  styleClass="card-title"/>
+            <Label fx:id="lblDisponibles" styleClass="stat-number"
+                   style="-fx-text-fill: #16A34A;"/>
+            <Label text="en plataforma" styleClass="stat-label"/>
+        </VBox>
+
+        <VBox styleClass="card" HBox.hgrow="ALWAYS"
+              alignment="CENTER" spacing="4">
+            <Label text="Transacciones" styleClass="card-title"/>
+            <Label fx:id="lblTransacciones" styleClass="stat-number"/>
+            <Label text="completadas"   styleClass="stat-label"/>
+        </VBox>
+
+        <VBox styleClass="card" HBox.hgrow="ALWAYS"
+              alignment="CENTER" spacing="4">
+            <Label text="Volumen total" styleClass="card-title"/>
+            <Label fx:id="lblVolumenTotal" styleClass="stat-number"
+                   style="-fx-font-size: 20px;"/>
+            <Label text="transaccionado" styleClass="stat-label"/>
+        </VBox>
+
+    </HBox>
+
+    <!-- ═══════════════════════════════════════
+         PANELES DE REPORTE
+    ═══════════════════════════════════════ -->
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+
+        <!-- Inmuebles -->
+        <VBox styleClass="card" HBox.hgrow="ALWAYS"
+              spacing="10" VBox.vgrow="ALWAYS">
+            <Label text="📋  Inmuebles" styleClass="card-title"/>
+            <ListView fx:id="lstReporteInmuebles"
+                      VBox.vgrow="ALWAYS"
+                      style="-fx-font-size: 12px; -fx-font-family: monospace;">
+                <placeholder>
+                    <Label text="Sin datos" style="-fx-text-fill: #94A3B8;"/>
+                </placeholder>
+            </ListView>
+        </VBox>
+
+        <!-- Usuarios -->
+        <VBox styleClass="card" HBox.hgrow="ALWAYS"
+              spacing="10" VBox.vgrow="ALWAYS">
+            <Label text="👤  Usuarios" styleClass="card-title"/>
+            <ListView fx:id="lstReporteUsuarios"
+                      VBox.vgrow="ALWAYS"
+                      style="-fx-font-size: 12px; -fx-font-family: monospace;">
+                <placeholder>
+                    <Label text="Sin datos" style="-fx-text-fill: #94A3B8;"/>
+                </placeholder>
+            </ListView>
+        </VBox>
+
+        <!-- Transacciones -->
+        <VBox styleClass="card" HBox.hgrow="ALWAYS"
+              spacing="10" VBox.vgrow="ALWAYS">
+            <Label text="💰  Transacciones" styleClass="card-title"/>
+            <ListView fx:id="lstReporteTransacciones"
+                      VBox.vgrow="ALWAYS"
+                      style="-fx-font-size: 12px; -fx-font-family: monospace;">
+                <placeholder>
+                    <Label text="Sin datos" style="-fx-text-fill: #94A3B8;"/>
+                </placeholder>
+            </ListView>
+        </VBox>
+
+    </HBox>
+
+</VBox>

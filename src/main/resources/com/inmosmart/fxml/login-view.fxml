@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.inmosmart.controller.LoginController"
+           styleClass="root-pane">
+
+    <!-- Tarjeta central de login -->
+    <VBox styleClass="login-card"
+          maxWidth="420" maxHeight="500"
+          alignment="CENTER">
+
+        <padding>
+            <Insets top="48" right="48" bottom="48" left="48"/>
+        </padding>
+
+        <!-- Encabezado -->
+        <VBox alignment="CENTER" spacing="6">
+            <Label text="InmoSmart" styleClass="login-title"/>
+            <Label text="Plataforma Inmobiliaria Digital"
+                   styleClass="login-subtitle"/>
+        </VBox>
+
+        <Region prefHeight="32"/>
+
+        <!-- Formulario -->
+        <VBox spacing="16">
+
+            <!-- Identificación -->
+            <VBox spacing="6">
+                <Label text="Número de identificación"
+                       styleClass="field-label"/>
+                <TextField fx:id="txtIdentificacion"
+                           promptText="Ej: 1094567890"
+                           styleClass="field-input"
+                           onAction="#onLogin"/>
+            </VBox>
+
+            <!-- Rol -->
+            <VBox spacing="6">
+                <Label text="Tipo de usuario" styleClass="field-label"/>
+                <ComboBox fx:id="cmbRol"
+                          maxWidth="Infinity"
+                          styleClass="field-combo"/>
+            </VBox>
+
+        </VBox>
+
+        <Region prefHeight="8"/>
+
+        <!-- Mensaje de estado (errores / éxito) -->
+        <Label fx:id="lblEstado"
+               styleClass="status-label"
+               wrapText="true"
+               maxWidth="Infinity"/>
+
+        <Region prefHeight="16"/>
+
+        <!-- Botones -->
+        <VBox spacing="10">
+            <Button text="Ingresar"
+                    maxWidth="Infinity"
+                    styleClass="btn-primary"
+                    onAction="#onLogin"/>
+            <Button text="Limpiar"
+                    maxWidth="Infinity"
+                    styleClass="btn-secondary"
+                    onAction="#onLimpiar"/>
+        </VBox>
+
+        <Region prefHeight="24"/>
+
+        <!-- Nota de registro -->
+        <Button text="¿No tienes cuenta? Regístrate aquí"
+                styleClass="btn-link"
+                maxWidth="Infinity"
+                onAction="#onIrARegistro"/>
+
+    </VBox>
+
+</StackPane>

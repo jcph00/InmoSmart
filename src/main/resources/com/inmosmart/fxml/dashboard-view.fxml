@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.inmosmart.controller.DashboardController"
+      prefWidth="1000" prefHeight="660">
+
+    <!-- ═══════════════════════════════
+         SIDEBAR
+    ═══════════════════════════════ -->
+    <VBox styleClass="sidebar" spacing="4">
+        <padding>
+            <Insets top="28" right="16" bottom="24" left="16"/>
+        </padding>
+
+        <!-- Marca -->
+        <VBox alignment="CENTER_LEFT" spacing="2">
+            <Label text="InmoSmart" styleClass="sidebar-title"/>
+            <Label text="Plataforma Inmobiliaria" styleClass="sidebar-subtitle"/>
+        </VBox>
+
+        <!-- Separador -->
+        <Region prefHeight="20"/>
+        <Separator style="-fx-background-color: #334155;"/>
+        <Region prefHeight="12"/>
+
+        <!-- Info del usuario activo -->
+        <VBox styleClass="sidebar-user-card" spacing="3">
+            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+            <Label fx:id="lblNombreUsuario" styleClass="sidebar-user-name"
+                   wrapText="true"/>
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label fx:id="lblRolUsuario"  styleClass="sidebar-user-role"/>
+                <Label text="·" styleClass="sidebar-subtitle"/>
+                <Label fx:id="lblRangoUsuario" styleClass="sidebar-subtitle"/>
+            </HBox>
+            <Label fx:id="lblPuntosUsuario" styleClass="sidebar-subtitle"/>
+        </VBox>
+
+        <Region prefHeight="16"/>
+
+        <!-- ── Botones Comprador ── -->
+        <Button fx:id="btnBuscarInmuebles" text="🏠  Buscar inmuebles"
+                styleClass="sidebar-btn" onAction="#onBuscarInmuebles"
+                maxWidth="Infinity"/>
+
+        <Button fx:id="btnMisOfertas" text="📋  Mis ofertas"
+                styleClass="sidebar-btn" onAction="#onMisOfertas"
+                maxWidth="Infinity"/>
+
+        <Button fx:id="btnRecomendaciones" text="⭐  Recomendaciones"
+                styleClass="sidebar-btn" onAction="#onRecomendaciones"
+                maxWidth="Infinity"/>
+
+        <!-- ── Botones Vendedor ── -->
+        <Button fx:id="btnMisInmuebles" text="🏠  Mis inmuebles"
+                styleClass="sidebar-btn" onAction="#onMisInmuebles"
+                maxWidth="Infinity"/>
+
+        <Button fx:id="btnOfertasRecibidas" text="📋  Ofertas recibidas"
+                styleClass="sidebar-btn" onAction="#onOfertasRecibidas"
+                maxWidth="Infinity"/>
+
+        <Button fx:id="btnReportes" text="📊  Reportes"
+                styleClass="sidebar-btn" onAction="#onReportes"
+                maxWidth="Infinity"/>
+
+        <!-- ── Botón común: Alertas con badge ── -->
+        <StackPane maxWidth="Infinity">
+            <Button fx:id="btnAlertas" text="🔔  Alertas"
+                    styleClass="sidebar-btn" onAction="#onAlertas"
+                    maxWidth="Infinity"/>
+            <Label fx:id="lblBadgeAlertas" text="0"
+                   styleClass="badge" visible="false"
+                   StackPane.alignment="CENTER_RIGHT"
+                   translateX="-8"/>
+        </StackPane>
+
+        <!-- Espaciador flexible -->
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <!-- Separador inferior -->
+        <Separator style="-fx-background-color: #334155;"/>
+        <Region prefHeight="8"/>
+
+        <!-- Cerrar sesión -->
+        <Button text="← Cerrar sesión"
+                styleClass="sidebar-btn"
+                onAction="#onCerrarSesion"
+                maxWidth="Infinity"/>
+
+    </VBox>
+
+    <!-- ═══════════════════════════════
+         ÁREA DE CONTENIDO DINÁMICO
+    ═══════════════════════════════ -->
+    <StackPane fx:id="contentArea"
+               styleClass="content-area"
+               HBox.hgrow="ALWAYS">
+        <!-- Se rellena dinámicamente con los FXMLs internos -->
+    </StackPane>
+
+</HBox>

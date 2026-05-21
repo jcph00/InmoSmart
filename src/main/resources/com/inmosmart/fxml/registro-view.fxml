@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.inmosmart.controller.RegistroController"
+           styleClass="root-pane">
+
+    <VBox styleClass="login-card"
+          maxWidth="480"
+          alignment="CENTER">
+
+        <padding>
+            <Insets top="44" right="48" bottom="44" left="48"/>
+        </padding>
+
+        <!-- Encabezado -->
+        <VBox alignment="CENTER" spacing="6">
+            <Label text="InmoSmart"                 styleClass="login-title"/>
+            <Label text="Crear una cuenta nueva"    styleClass="login-subtitle"/>
+        </VBox>
+
+        <Region prefHeight="28"/>
+
+        <!-- Formulario -->
+        <VBox spacing="14">
+
+            <VBox spacing="5">
+                <Label text="Nombre completo" styleClass="field-label"/>
+                <TextField fx:id="txtNombre"
+                           promptText="Ej: Carlos Pérez"
+                           styleClass="field-input"/>
+            </VBox>
+
+            <VBox spacing="5">
+                <Label text="Número de identificación" styleClass="field-label"/>
+                <TextField fx:id="txtIdentificacion"
+                           promptText="Ej: 1094567890"
+                           styleClass="field-input"/>
+            </VBox>
+
+            <HBox spacing="14">
+
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="Teléfono" styleClass="field-label"/>
+                    <TextField fx:id="txtTelefono"
+                               promptText="Ej: 3001234567"
+                               styleClass="field-input"/>
+                </VBox>
+
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="Correo electrónico" styleClass="field-label"/>
+                    <TextField fx:id="txtCorreo"
+                               promptText="correo@ejemplo.com"
+                               styleClass="field-input"/>
+                </VBox>
+
+            </HBox>
+
+            <!-- Selección de rol -->
+            <VBox spacing="10">
+                <Label text="Tipo de cuenta" styleClass="field-label"/>
+                <HBox spacing="24" alignment="CENTER_LEFT">
+
+                    <VBox styleClass="role-card" HBox.hgrow="ALWAYS"
+                          alignment="CENTER" spacing="6">
+                        <RadioButton fx:id="rbComprador"
+                                     text="Comprador"
+                                     styleClass="role-radio"/>
+                        <Label text="Busca y adquiere inmuebles"
+                               styleClass="stat-label"
+                               wrapText="true"
+                               textAlignment="CENTER"/>
+                    </VBox>
+
+                    <VBox styleClass="role-card" HBox.hgrow="ALWAYS"
+                          alignment="CENTER" spacing="6">
+                        <RadioButton fx:id="rbVendedor"
+                                     text="Vendedor"
+                                     styleClass="role-radio"/>
+                        <Label text="Publica y gestiona propiedades"
+                               styleClass="stat-label"
+                               wrapText="true"
+                               textAlignment="CENTER"/>
+                    </VBox>
+
+                </HBox>
+            </VBox>
+
+        </VBox>
+
+        <Region prefHeight="8"/>
+
+        <!-- Feedback -->
+        <Label fx:id="lblEstado"
+               styleClass="status-label"
+               wrapText="true"
+               maxWidth="Infinity"/>
+
+        <Region prefHeight="12"/>
+
+        <!-- Botones de acción -->
+        <VBox spacing="10">
+            <Button text="Crear cuenta"
+                    maxWidth="Infinity"
+                    styleClass="btn-primary"
+                    onAction="#onRegistrar"/>
+            <Button text="Limpiar"
+                    maxWidth="Infinity"
+                    styleClass="btn-secondary"
+                    onAction="#onLimpiar"/>
+        </VBox>
+
+        <Region prefHeight="16"/>
+
+        <!-- Volver al login -->
+        <Button text="¿Ya tienes cuenta? Inicia sesión"
+                maxWidth="Infinity"
+                styleClass="btn-link"
+                onAction="#onVolver"/>
+
+    </VBox>
+
+</StackPane>

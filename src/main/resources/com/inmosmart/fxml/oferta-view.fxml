@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.inmosmart.controller.OfertaController"
+      spacing="20" styleClass="content-area">
+
+    <padding><Insets top="28" right="28" bottom="28" left="28"/></padding>
+
+    <!-- Título dinámico -->
+    <Label fx:id="lblTituloSeccion" styleClass="section-title"/>
+
+    <!-- ═══════════════════════════════════════
+         PANEL DE RESUMEN
+    ═══════════════════════════════════════ -->
+    <HBox spacing="16">
+
+        <VBox styleClass="card" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="4">
+            <Label text="Total"      styleClass="card-title"/>
+            <Label fx:id="lblTotalOfertas" styleClass="stat-number"/>
+        </VBox>
+
+        <VBox styleClass="card" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="4"
+              style="-fx-background-color: #fffbeb;">
+            <Label text="Pendientes" styleClass="card-title"/>
+            <Label fx:id="lblPendientes"
+                   styleClass="stat-number"
+                   style="-fx-text-fill: #D97706;"/>
+        </VBox>
+
+        <VBox styleClass="card" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="4"
+              style="-fx-background-color: #f0fdf4;">
+            <Label text="Aceptadas"  styleClass="card-title"/>
+            <Label fx:id="lblAceptadas"
+                   styleClass="stat-number"
+                   style="-fx-text-fill: #16A34A;"/>
+        </VBox>
+
+        <VBox styleClass="card" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="4"
+              style="-fx-background-color: #fef2f2;">
+            <Label text="Rechazadas" styleClass="card-title"/>
+            <Label fx:id="lblRechazadas"
+                   styleClass="stat-number"
+                   style="-fx-text-fill: #DC2626;"/>
+        </VBox>
+
+    </HBox>
+
+    <!-- ═══════════════════════════════════════
+         TABLA DE OFERTAS
+    ═══════════════════════════════════════ -->
+    <VBox styleClass="card" VBox.vgrow="ALWAYS" spacing="12">
+        <Label text="Detalle de ofertas" styleClass="card-title"/>
+
+        <TableView fx:id="tablaOfertas"
+                   styleClass="table-view"
+                   VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colCodigo"
+                             text="Código oferta"  prefWidth="150"/>
+                <TableColumn fx:id="colInmueble"
+                             text="Inmueble"        prefWidth="180"/>
+                <TableColumn fx:id="colValorOferta"
+                             text="Valor ofertado"  prefWidth="130"/>
+                <TableColumn fx:id="colPrecioBase"
+                             text="Precio base"     prefWidth="130"/>
+                <TableColumn fx:id="colDiferencia"
+                             text="Diferencia"      prefWidth="110"/>
+                <TableColumn fx:id="colFecha"
+                             text="Fecha"           prefWidth="110"/>
+                <TableColumn fx:id="colEstado"
+                             text="Estado"          prefWidth="110"/>
+                <TableColumn fx:id="colComprador"
+                             text="Comprador"       prefWidth="140"/>
+            </columns>
+            <placeholder>
+                <Label text="No hay ofertas para mostrar."
+                       style="-fx-text-fill: #94A3B8;"/>
+            </placeholder>
+        </TableView>
+    </VBox>
+
+    <!-- ═══════════════════════════════════════
+         PANEL DE ACCIÓN — solo vendedor
+    ═══════════════════════════════════════ -->
+    <VBox fx:id="panelAccionVendedor" styleClass="card" spacing="14">
+        <Label text="Gestionar oferta seleccionada" styleClass="card-title"/>
+
+        <Label fx:id="lblInfoOfertaSeleccionada"
+               text="Selecciona una oferta de la tabla"
+               styleClass="stat-label"
+               wrapText="true"/>
+
+        <HBox spacing="12" alignment="CENTER_LEFT">
+
+            <VBox spacing="4">
+                <Label text="Tipo de operación" styleClass="field-label"/>
+                <ComboBox fx:id="cmbTipoOperacion"
+                          prefWidth="160"
+                          styleClass="field-combo"/>
+            </VBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button fx:id="btnAceptar"
+                    text="✓  Aceptar oferta"
+                    styleClass="btn-primary"
+                    prefWidth="160"
+                    onAction="#onAceptarOferta"/>
+
+            <Button fx:id="btnRechazar"
+                    text="✕  Rechazar oferta"
+                    styleClass="btn-danger"
+                    prefWidth="160"
+                    onAction="#onRechazarOferta"/>
+
+        </HBox>
+    </VBox>
+
+    <!-- Feedback -->
+    <Label fx:id="lblEstado" styleClass="status-label"
+           wrapText="true" maxWidth="Infinity"/>
+
+</VBox>

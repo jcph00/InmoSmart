@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.inmosmart.controller.InmuebleController"
+      spacing="20" styleClass="content-area">
+
+    <padding><Insets top="28" right="28" bottom="28" left="28"/></padding>
+
+    <!-- Título dinámico -->
+    <Label fx:id="lblTituloSeccion" styleClass="section-title"/>
+
+    <!-- ═══════════════════════════════════════
+         PANEL COMPRADOR — Filtros de búsqueda
+    ═══════════════════════════════════════ -->
+    <VBox fx:id="panelComprador" styleClass="card" spacing="14">
+        <Label text="Filtros de búsqueda" styleClass="card-title"/>
+        <HBox spacing="12" alignment="CENTER_LEFT">
+
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Ciudad" styleClass="field-label"/>
+                <TextField fx:id="txtCiudadFiltro"
+                           promptText="Ej: Armenia"
+                           styleClass="field-input"/>
+            </VBox>
+
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Tipo" styleClass="field-label"/>
+                <ComboBox fx:id="cmbTipoFiltro"
+                          maxWidth="Infinity"
+                          styleClass="field-combo"/>
+            </VBox>
+
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Precio mínimo" styleClass="field-label"/>
+                <TextField fx:id="txtPrecioMin"
+                           promptText="0"
+                           styleClass="field-input"/>
+            </VBox>
+
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Precio máximo" styleClass="field-label"/>
+                <TextField fx:id="txtPrecioMax"
+                           promptText="Sin límite"
+                           styleClass="field-input"/>
+            </VBox>
+
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Área mínima (m²)" styleClass="field-label"/>
+                <TextField fx:id="txtAreaMin"
+                           promptText="0"
+                           styleClass="field-input"/>
+            </VBox>
+
+            <VBox alignment="BOTTOM_CENTER" prefWidth="120">
+                <Button text="Buscar"
+                        styleClass="btn-primary"
+                        maxWidth="Infinity"
+                        onAction="#onBuscar"/>
+            </VBox>
+
+        </HBox>
+    </VBox>
+
+    <!-- ═══════════════════════════════════════
+         PANEL VENDEDOR — Registro de inmueble
+    ═══════════════════════════════════════ -->
+    <VBox fx:id="panelVendedor" styleClass="card" spacing="14">
+        <Label text="Registrar nuevo inmueble" styleClass="card-title"/>
+        <HBox spacing="12">
+
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Tipo" styleClass="field-label"/>
+                <ComboBox fx:id="cmbTipoInmueble"
+                          maxWidth="Infinity"
+                          styleClass="field-combo"/>
+            </VBox>
+
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Dirección" styleClass="field-label"/>
+                <TextField fx:id="txtDireccion"
+                           promptText="Calle 15 #20-30"
+                           styleClass="field-input"/>
+            </VBox>
+
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Ciudad" styleClass="field-label"/>
+                <TextField fx:id="txtCiudad"
+                           promptText="Armenia"
+                           styleClass="field-input"/>
+            </VBox>
+
+            <VBox spacing="4" prefWidth="100">
+                <Label text="Área (m²)" styleClass="field-label"/>
+                <TextField fx:id="txtArea"
+                           promptText="80"
+                           styleClass="field-input"/>
+            </VBox>
+
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Precio ($)" styleClass="field-label"/>
+                <TextField fx:id="txtPrecio"
+                           promptText="250000000"
+                           styleClass="field-input"/>
+            </VBox>
+
+        </HBox>
+
+        <HBox spacing="12" alignment="CENTER_LEFT">
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Descripción de la publicación"
+                       styleClass="field-label"/>
+                <TextField fx:id="txtDescripcion"
+                           promptText="Apartamento moderno con vista..."
+                           styleClass="field-input"/>
+            </VBox>
+            <VBox alignment="BOTTOM_CENTER" prefWidth="160">
+                <Button text="Registrar inmueble"
+                        styleClass="btn-primary"
+                        maxWidth="Infinity"
+                        onAction="#onRegistrarInmueble"/>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- ═══════════════════════════════════════
+         TABLA COMPARTIDA
+    ═══════════════════════════════════════ -->
+    <VBox styleClass="card" VBox.vgrow="ALWAYS" spacing="12">
+        <HBox spacing="12" alignment="CENTER_LEFT">
+            <Label text="Inmuebles" styleClass="card-title"
+                   HBox.hgrow="ALWAYS"/>
+
+            <!-- Acción comprador -->
+            <Button fx:id="btnAccionPrincipal"
+                    styleClass="btn-primary"
+                    onAction="#onHacerOferta"
+                    prefWidth="140"/>
+
+            <!-- Acciones vendedor -->
+            <TextField fx:id="txtNuevoPrecio"
+                       promptText="Nuevo precio"
+                       styleClass="field-input"
+                       prefWidth="140"/>
+            <Button fx:id="btnActualizarPrecio"
+                    text="Actualizar precio"
+                    styleClass="btn-secondary"
+                    onAction="#onActualizarPrecio"/>
+        </HBox>
+
+        <TableView fx:id="tablaInmuebles"
+                   styleClass="table-view"
+                   VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colCodigo"   text="Código"   prefWidth="110"/>
+                <TableColumn fx:id="colTipo"     text="Tipo"     prefWidth="110"/>
+                <TableColumn fx:id="colCiudad"   text="Ciudad"   prefWidth="120"/>
+                <TableColumn fx:id="colPrecio"   text="Precio"   prefWidth="140"/>
+                <TableColumn fx:id="colArea"     text="Área"     prefWidth="90"/>
+                <TableColumn fx:id="colEstado"   text="Estado"   prefWidth="110"/>
+                <TableColumn fx:id="colVendedor" text="Vendedor" prefWidth="140"/>
+            </columns>
+            <placeholder>
+                <Label text="No hay inmuebles para mostrar."
+                       style="-fx-text-fill: #94A3B8;"/>
+            </placeholder>
+        </TableView>
+
+        <!-- Estado / feedback -->
+        <Label fx:id="lblEstado" styleClass="status-label"
+               wrapText="true" maxWidth="Infinity"/>
+    </VBox>
+
+</VBox>

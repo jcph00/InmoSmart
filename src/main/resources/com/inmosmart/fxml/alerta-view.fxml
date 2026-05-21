@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.inmosmart.controller.AlertaController"
+      spacing="20" styleClass="content-area">
+
+    <padding><Insets top="28" right="28" bottom="28" left="28"/></padding>
+
+    <!-- Encabezado -->
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <Label text="🔔  Mis alertas" styleClass="section-title"
+               HBox.hgrow="ALWAYS"/>
+        <Button text="Limpiar leídas"
+                styleClass="btn-secondary"
+                onAction="#onLimpiarLeidas"/>
+    </HBox>
+
+    <!-- ═══════════════════════════════════════
+         RESUMEN
+    ═══════════════════════════════════════ -->
+    <HBox spacing="16">
+
+        <VBox styleClass="card" HBox.hgrow="ALWAYS"
+              alignment="CENTER" spacing="4">
+            <Label text="Total alertas"  styleClass="card-title"/>
+            <Label fx:id="lblTotalAlertas" styleClass="stat-number"/>
+        </VBox>
+
+        <VBox styleClass="card" HBox.hgrow="ALWAYS"
+              alignment="CENTER" spacing="4"
+              style="-fx-background-color: #eff6ff;">
+            <Label text="No leídas"     styleClass="card-title"/>
+            <Label fx:id="lblNoLeidas"
+                   styleClass="stat-number"
+                   style="-fx-text-fill: #2563EB;"/>
+        </VBox>
+
+    </HBox>
+
+    <!-- ═══════════════════════════════════════
+         LISTA DE ALERTAS
+    ═══════════════════════════════════════ -->
+    <VBox styleClass="card" VBox.vgrow="ALWAYS" spacing="12">
+        <Label text="Notificaciones" styleClass="card-title"/>
+
+        <ListView fx:id="lstAlertas"
+                  VBox.vgrow="ALWAYS"
+                  style="-fx-font-size: 13px;">
+            <placeholder>
+                <Label text="No tienes alertas nuevas."
+                       style="-fx-text-fill: #94A3B8;"/>
+            </placeholder>
+        </ListView>
+    </VBox>
+
+</VBox>
