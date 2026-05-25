@@ -30,7 +30,7 @@ public class MainApp extends Application {
 
         // 2. Inicializar el navegador con el Stage principal
         NavegadorApp.inicializar(stage);
-
+ 
         // 3. Configurar la ventana principal
         stage.setTitle("InmoSmart — Plataforma Inmobiliaria");
         stage.setMinWidth(900);

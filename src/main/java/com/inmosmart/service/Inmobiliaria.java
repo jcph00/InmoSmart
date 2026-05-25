@@ -139,12 +139,9 @@ public class Inmobiliaria implements IReportable {
         validarOferta(oferta);
 
         listaOfertas.add(oferta);
-        oferta.getComprador().construirOferta(
-                oferta.getInmueble(), oferta.getValorOferta());
-        oferta.getComprador().sumarPuntos(5, "Realizó oferta sobre: "
-                + oferta.getInmueble().getCodigo());
-
-        // Reserva el inmueble mientras la oferta está pendiente
+        oferta.getComprador().agregarOferta(oferta);   // ← semántico, no directo
+        oferta.getComprador().sumarPuntos(5,
+                "Realizó oferta sobre: " + oferta.getInmueble().getCodigo());
         oferta.getInmueble().setEstado(EstadoInmueble.RESERVADO);
     }
 
