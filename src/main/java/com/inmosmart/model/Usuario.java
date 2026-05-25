@@ -11,22 +11,42 @@ public abstract class Usuario {
     private String identificacion;
     private String telefono;
     private String correo;
+    private String contrasena;           // ← nuevo atributo
     private TipoUsuario tipoUsuario;
     private int puntosReputacion;
     private String rango;
     private List<EventoReputacion> historialReputacion;
 
+    // Constructor actualizado — recibe contrasena
     public Usuario(String id, String nombre, String identificacion,
-                   String telefono, String correo, TipoUsuario tipoUsuario) {
-        this.id = id;
-        this.nombre = nombre;
-        this.identificacion = identificacion;
-        this.telefono = telefono;
-        this.correo = correo;
-        this.tipoUsuario = tipoUsuario;
-        this.puntosReputacion = 0;
-        this.rango = "Principiante";
+                   String telefono, String correo,
+                   String contrasena,              // ← nuevo parámetro
+                   TipoUsuario tipoUsuario) {
+
+        if (contrasena == null || contrasena.length() < 6)
+            throw new IllegalArgumentException(
+                    "La contraseña debe tener al menos 6 caracteres");
+
+        this.id                  = id;
+        this.nombre              = nombre;
+        this.identificacion      = identificacion;
+        this.telefono            = telefono;
+        this.correo              = correo;
+        this.contrasena          = contrasena;
+        this.tipoUsuario         = tipoUsuario;
+        this.puntosReputacion    = 0;
+        this.rango               = "Principiante";
         this.historialReputacion = new ArrayList<>();
+    }
+
+    // ── Verificación — sin getter público de la contraseña ───────────────────
+    /**
+     * Verifica si el intento coincide con la contraseña registrada.
+     * La contraseña nunca se expone fuera de Usuario.
+     */
+    public boolean verificarContrasena(String intento) {
+        if (intento == null) return false;
+        return this.contrasena.equals(intento);
     }
 
     // ── Getters ──────────────────────────────────────────────────

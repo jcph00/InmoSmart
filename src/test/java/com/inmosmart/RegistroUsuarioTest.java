@@ -23,7 +23,7 @@ class RegistroUsuarioTest extends BaseTest {
     void registrarComprador_debeQuedarEnSistema() {
         Comprador nuevo = new Comprador(
                 "C-002", "María López", "1094000010",
-                "3003333333", "maria@test.com"
+                "3003333333", "maria@test.com", "test123"
         );
         inmobiliaria.registrarComprador(nuevo);
 
@@ -38,7 +38,7 @@ class RegistroUsuarioTest extends BaseTest {
     void registrarVendedor_debeQuedarEnSistema() {
         Vendedor nuevo = new Vendedor(
                 "V-002", "Pedro Ríos", "1094000011",
-                "3004444444", "pedro@test.com"
+                "3004444444", "pedro@test.com",  "test123"
         );
         inmobiliaria.registrarVendedor(nuevo);
 
@@ -66,11 +66,11 @@ class RegistroUsuarioTest extends BaseTest {
         // Usuarios creados aquí — sin pasar por ninguna acción del sistema
         Comprador compradorFresco = new Comprador(
                 "C-FRESH", "Test Comprador", "9000000001",
-                "3000000001", "fresh@test.com"
+                "3000000001", "fresh@test.com",  "test123"
         );
         Vendedor vendedorFresco = new Vendedor(
                 "V-FRESH", "Test Vendedor", "9000000002",
-                "3000000002", "fresh2@test.com"
+                "3000000002", "fresh2@test.com",   "test123"
         );
 
         assertEquals(0, compradorFresco.getPuntosReputacion(),
@@ -93,7 +93,7 @@ class RegistroUsuarioTest extends BaseTest {
     void registrarIdentificacionDuplicada_debeLanzarExcepcion() {
         Comprador duplicado = new Comprador(
                 "C-DUP", "Otro Nombre", "1094000001", // misma ID que compradorBase
-                "3009999999", "otro@test.com"
+                "3009999999", "otro@test.com",   "test123"
         );
 
         IllegalStateException excepcion = assertThrows(

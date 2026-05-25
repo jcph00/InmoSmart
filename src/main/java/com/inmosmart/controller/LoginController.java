@@ -7,6 +7,7 @@ import com.inmosmart.service.Sesion;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.util.Optional;
@@ -25,6 +26,7 @@ public class LoginController {
     @FXML private TextField     txtIdentificacion;
     @FXML private ComboBox<String> cmbRol;
     @FXML private Label         lblEstado;
+    @FXML private PasswordField pwdContrasena;
 
     // ── Dependencia ──────────────────────────────────────────────────────────
     private Inmobiliaria inmobiliaria;
@@ -60,24 +62,27 @@ public class LoginController {
     @FXML
     private void onLogin() {
         String identificacion = txtIdentificacion.getText().trim();
-        TipoUsuario rol = resolverRol(cmbRol.getValue());
+        String contrasena     = pwdContrasena.getText();          // ← nuevo
+        TipoUsuario rol       = resolverRol(cmbRol.getValue());
 
-        // Validación de campos vacíos — responsabilidad de la UI
         if (identificacion.isEmpty()) {
             mostrarError("Ingresa tu número de identificación");
             return;
         }
-
-        // Delegación a Inmobiliaria — sin lógica de búsqueda aquí
-        Optional<Usuario> resultado =
-                inmobiliaria.buscarUsuarioPorIdentificacion(identificacion, rol);
-
-        if (resultado.isEmpty()) {
-            mostrarError("Usuario no encontrado. Verifica tu identificación y rol.");
+        if (contrasena.isEmpty()) {
+            mostrarError("Ingresa tu contraseña");                // ← nuevo
             return;
         }
 
-        // Sesión e inicio de navegación
+        // Usa autenticar() en lugar de buscarUsuarioPorIdentificacion()
+        Optional<Usuario> resultado =
+                inmobiliaria.autenticar(identificacion, contrasena, rol);  // ← cambia
+
+        if (resultado.isEmpty()) {
+            mostrarError("Credenciales incorrectas. Verifica tus datos.");  // ← mensaje actualizado
+            return;
+        }
+
         Sesion.iniciar(resultado.get());
         navegarAlDashboard();
     }
@@ -88,6 +93,7 @@ public class LoginController {
     @FXML
     private void onLimpiar() {
         txtIdentificacion.clear();
+        pwdContrasena.clear();     // ← nuevo
         cmbRol.setValue("Comprador");
         limpiarEstado();
         txtIdentificacion.requestFocus();

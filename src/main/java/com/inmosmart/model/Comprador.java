@@ -15,8 +15,11 @@ public class Comprador extends Usuario implements IComprador {
     private List<ParametrosBusqueda> historialBusquedas;
 
     public Comprador(String id, String nombre, String identificacion,
-                     String telefono, String correo) {
-        super(id, nombre, identificacion, telefono, correo, TipoUsuario.COMPRADOR);
+                     String telefono, String correo,
+                     String contrasena) {          // ← nuevo parámetro
+        super(id, nombre, identificacion, telefono, correo,
+                contrasena,                         // ← pasa a super
+                TipoUsuario.COMPRADOR);
         this.ofertasRealizadas  = new ArrayList<>();
         this.historialBusquedas = new ArrayList<>();
     }

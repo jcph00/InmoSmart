@@ -60,6 +60,25 @@
 
             </HBox>
 
+            <!-- Contraseñas — después del HBox de teléfono/correo -->
+            <HBox spacing="14">
+
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="Contraseña" styleClass="field-label"/>
+                    <PasswordField fx:id="pwdContrasena"
+                                   promptText="Mínimo 6 caracteres"
+                                   styleClass="field-input"/>
+                </VBox>
+
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="Confirmar contraseña" styleClass="field-label"/>
+                    <PasswordField fx:id="pwdConfirmacion"
+                                   promptText="Repite tu contraseña"
+                                   styleClass="field-input"/>
+                </VBox>
+
+            </HBox>
+
             <!-- Selección de rol -->
             <VBox spacing="10">
                 <Label text="Tipo de cuenta" styleClass="field-label"/>

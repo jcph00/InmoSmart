@@ -108,7 +108,7 @@ class OfertaCompraTest extends BaseTest {
     void oferta_compradorNoRegistrado_debeLanzarExcepcion() {
         com.inmosmart.model.Comprador externo = new com.inmosmart.model.Comprador(
                 "C-EXT", "Externo", "9999999998",
-                "3000000001", "ext2@test.com"
+                "3000000001", "ext2@test.com", "test123"
         );
         Oferta oferta = externo.construirOferta(inmuebleBase, 200_000_000.0);
 

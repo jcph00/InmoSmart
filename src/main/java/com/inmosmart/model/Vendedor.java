@@ -13,8 +13,11 @@ public class Vendedor extends Usuario implements IPublicador {
     private double gananciasAcumuladas;
 
     public Vendedor(String id, String nombre, String identificacion,
-                    String telefono, String correo) {
-        super(id, nombre, identificacion, telefono, correo, TipoUsuario.VENDEDOR);
+                    String telefono, String correo,
+                    String contrasena) {           // ← nuevo parámetro
+        super(id, nombre, identificacion, telefono, correo,
+                contrasena,                          // ← pasa a super
+                TipoUsuario.VENDEDOR);
         this.inmueblesPropios    = new ArrayList<>();
         this.gananciasAcumuladas = 0.0;
     }

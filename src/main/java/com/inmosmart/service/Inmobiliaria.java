@@ -406,6 +406,24 @@ public class Inmobiliaria implements IReportable {
                 .findFirst();
     }
 
+    /**
+     * Autentica un usuario verificando identificación, rol y contraseña.
+     * Devuelve el usuario si las credenciales son correctas.
+     * Devuelve Optional.empty() si no existe o la contraseña es incorrecta.
+     *
+     * Intencionalmente no distingue entre "usuario no existe" y
+     * "contraseña incorrecta" en el mensaje — práctica estándar de seguridad.
+     */
+    public Optional<Usuario> autenticar(String identificacion,
+                                        String contrasena,
+                                        TipoUsuario tipo) {
+        return listaUsuarios.stream()
+                .filter(u -> u.getIdentificacion().equals(identificacion)
+                        && u.getTipoUsuario() == tipo
+                        && u.verificarContrasena(contrasena))
+                .findFirst();
+    }
+
     private String generarCodigo(String prefijo) {
         return prefijo + "-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
     }

@@ -28,6 +28,8 @@ public class RegistroController {
     @FXML private TextField     txtIdentificacion;
     @FXML private TextField     txtTelefono;
     @FXML private TextField     txtCorreo;
+    @FXML private PasswordField pwdContrasena;
+    @FXML private PasswordField pwdConfirmacion;
 
     // ── Selección de rol ─────────────────────────────────────────────────────
     @FXML private RadioButton   rbComprador;
@@ -58,57 +60,61 @@ public class RegistroController {
 
     @FXML
     private void onRegistrar() {
-        // ── Validación de UI ──────────────────────────────────────────────
         String nombre         = txtNombre.getText().trim();
         String identificacion = txtIdentificacion.getText().trim();
         String telefono       = txtTelefono.getText().trim();
         String correo         = txtCorreo.getText().trim();
+        String contrasena     = pwdContrasena.getText();         // ← nuevo
+        String confirmacion   = pwdConfirmacion.getText();       // ← nuevo
 
+        // Validaciones de UI existentes
         if (nombre.isEmpty() || identificacion.isEmpty()
                 || telefono.isEmpty() || correo.isEmpty()) {
             mostrarError("Todos los campos son obligatorios.");
             return;
         }
-
         if (!correo.contains("@") || !correo.contains(".")) {
             mostrarError("Ingresa un correo electrónico válido.");
             return;
         }
-
         if (identificacion.length() < 6) {
             mostrarError("La identificación debe tener al menos 6 caracteres.");
             return;
         }
 
-        // ── Construcción y registro — delega a Inmobiliaria ───────────────
+        // Validaciones de contraseña — nuevas
+        if (contrasena.length() < 6) {
+            mostrarError("La contraseña debe tener al menos 6 caracteres.");
+            return;
+        }
+        if (!contrasena.equals(confirmacion)) {
+            mostrarError("Las contraseñas no coinciden.");
+            return;
+        }
+
         try {
             String id = UUID.randomUUID().toString();
-            boolean esComprador = rbComprador.isSelected();
 
-            if (esComprador) {
+            if (rbComprador.isSelected()) {
                 Comprador comprador = new Comprador(
-                        id, nombre, identificacion, telefono, correo
+                        id, nombre, identificacion,
+                        telefono, correo, contrasena   // ← nuevo parámetro
                 );
                 inmobiliaria.registrarComprador(comprador);
                 Sesion.iniciar(comprador);
-
             } else {
                 Vendedor vendedor = new Vendedor(
-                        id, nombre, identificacion, telefono, correo
+                        id, nombre, identificacion,
+                        telefono, correo, contrasena   // ← nuevo parámetro
                 );
                 inmobiliaria.registrarVendedor(vendedor);
                 Sesion.iniciar(vendedor);
             }
 
-            // ── Navegación al dashboard tras registro exitoso ─────────────
             DashboardController ctrl = NavegadorApp.irA(Vista.DASHBOARD);
             ctrl.inicializar(inmobiliaria);
 
-        } catch (IllegalStateException e) {
-            // Identificación duplicada — lanzada por Inmobiliaria
-            mostrarError(e.getMessage());
-        } catch (IllegalArgumentException e) {
-            // Validación de dominio — campo inválido detectado en constructor
+        } catch (IllegalStateException | IllegalArgumentException e) {
             mostrarError(e.getMessage());
         }
     }
@@ -125,6 +131,8 @@ public class RegistroController {
         txtIdentificacion.clear();
         txtTelefono.clear();
         txtCorreo.clear();
+        pwdContrasena.clear();     // ← nuevo
+        pwdConfirmacion.clear();   // ← nuevo
         rbComprador.setSelected(true);
         limpiarEstado();
         txtNombre.requestFocus();

@@ -106,7 +106,7 @@ class PublicacionInmuebleTest extends BaseTest {
     void registrarInmueble_vendedorNoRegistrado_debeLanzarExcepcion() {
         Vendedor vendedorExterno = new Vendedor(
                 "V-EXT", "Externo", "9999999999",
-                "3000000000", "ext@test.com"
+                "3000000000", "ext@test.com", "extpass"
         );
         Inmueble inmuebleExterno = new Inmueble(
                 "EXT-001", TipoInmueble.TERRENO,

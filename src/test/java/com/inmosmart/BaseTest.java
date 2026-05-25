@@ -26,11 +26,13 @@ public abstract class BaseTest {
         // Usuarios base
         compradorBase = new Comprador(
                 "C-001", "Ana Gómez", "1094000001",
-                "3001111111", "ana@test.com"
+                "3001111111", "ana@test.com",
+                "test123"    // ← contraseña para pruebas
         );
         vendedorBase = new Vendedor(
                 "V-001", "Luis Torres", "1094000002",
-                "3002222222", "luis@test.com"
+                "3002222222", "luis@test.com",
+                "test123"    // ← contraseña para pruebas
         );
 
         // Inmueble base — disponible por defecto

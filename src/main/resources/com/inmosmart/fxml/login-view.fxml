@@ -41,6 +41,15 @@
                            onAction="#onLogin"/>
             </VBox>
 
+            <!-- Contraseña — después del campo de identificación -->
+            <VBox spacing="6">
+                <Label text="Contraseña" styleClass="field-label"/>
+                <PasswordField fx:id="pwdContrasena"
+                               promptText="Tu contraseña"
+                               styleClass="field-input"
+                               onAction="#onLogin"/>
+            </VBox>
+
             <!-- Rol -->
             <VBox spacing="6">
                 <Label text="Tipo de usuario" styleClass="field-label"/>
